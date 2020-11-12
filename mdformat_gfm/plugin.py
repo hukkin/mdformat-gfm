@@ -8,11 +8,10 @@ from mdformat.renderer import MDRenderer
 
 def update_mdit(mdit: MarkdownIt) -> None:
     # Enable mdformat-tables plugin
-    # TODO: test and handle the case where "tables" plugin is enabled
-    #       in addition to "gfm"
     tables_plugin = mdformat.plugins.PARSER_EXTENSIONS["tables"]
-    tables_plugin.update_mdit(mdit)
-    mdit.options["parser_extension"].append(tables_plugin)
+    if tables_plugin not in mdit.options["parser_extension"]:
+        mdit.options["parser_extension"].append(tables_plugin)
+        tables_plugin.update_mdit(mdit)
 
     # Enable strikethrough markdown-it extension
     mdit.enable("strikethrough")

@@ -11,9 +11,9 @@ xxxxxx | yyyyyy | zzzzzz
 | xxxxxx | yyyyyy | zzzzzz |
 .
 
-Dummy
+Simple strikethrough
 .
-dummy
+~~Hi~~ Hello, world!
 .
-dummy
+~~Hi~~ Hello, world!
 .

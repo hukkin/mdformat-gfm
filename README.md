@@ -14,8 +14,16 @@ Mdformat-gfm is an mdformat plugin that changes the target specification to [Git
 
 This plugin is not feature complete with the GFM spec yet.
 
-- ✔ done
-* ❌ not done
+**Done:**
+
+- ✔ Tables
+- ✔ Strikethrough
+
+**To do:**
+
+- ❌ Task list items
+- ❌ Extended autolinks
+- ❌ Disallowed raw HTML
 
 ## Install
 

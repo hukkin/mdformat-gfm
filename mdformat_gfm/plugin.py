@@ -1,9 +1,10 @@
 from typing import Any, Mapping, Optional, Sequence, Tuple
 
 from markdown_it import MarkdownIt
+from markdown_it.extensions.tasklists import tasklists_plugin
 from markdown_it.token import Token
 import mdformat.plugins
-from mdformat.renderer import MDRenderer
+from mdformat.renderer import MARKERS, MDRenderer
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
@@ -16,6 +17,9 @@ def update_mdit(mdit: MarkdownIt) -> None:
     # Enable strikethrough markdown-it extension
     mdit.enable("strikethrough")
 
+    # Enable tasklist markdown-it extension
+    mdit.use(tasklists_plugin)
+
 
 def render_token(
     renderer: MDRenderer,
@@ -25,13 +29,50 @@ def render_token(
     env: dict,
 ) -> Optional[Tuple[str, int]]:
     token = tokens[index]
+
+    # Prevent endless recursion. Make sure this plugin never processes
+    # a token more than once.
+    if "mdformat-gfm-processed-tokens" not in env:
+        env["mdformat-gfm-processed-tokens"] = set()
+    if id(token) in env["mdformat-gfm-processed-tokens"]:
+        return None
+    env["mdformat-gfm-processed-tokens"].add(id(token))
+
+    # Render strikethroughs
     if token.type == "s_open":
         closing_index = _index_closing_token(tokens, index)
         text = renderer.render(
-            tokens[index + 1 : closing_index], options, env, finalize=False
+            tokens, options, env, start=index + 1, stop=closing_index, finalize=False
         )
         text = "~~" + text + "~~"
         return text, closing_index
+
+    # Render task lists items
+    if token.type == "list_item_open":
+        classes = token.attrGet("class")
+        if classes is None or "task-list-item" not in classes:
+            return None
+        closing_index = _index_closing_token(tokens, index)
+
+        # Tasklists extension makes a bit weird token stream where
+        # tasks are annotated by html. We need to remove the HTML.
+        inline_token = tokens[index + 2]
+        assert inline_token.type == "inline"
+        html_inline = inline_token.children[0]
+        assert 'class="task-list-item-checkbox"' in html_inline.content
+        inline_token.children.remove(html_inline)
+        checkmark = "x" if 'checked="checked"' in html_inline.content else " "
+
+        text = renderer.render(
+            tokens, options, env, start=index, stop=closing_index + 1, finalize=False
+        )
+
+        text = text.replace(
+            MARKERS.LIST_ITEM + MARKERS.LIST_INDENT_FIRST_LINE,
+            f"{MARKERS.LIST_ITEM} [{checkmark}]",
+        )
+        return text, closing_index
+
     return None
 
 

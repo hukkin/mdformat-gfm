@@ -109,6 +109,7 @@ description = "Python port of markdown-it. Markdown parsing, done right!"
 category = "main"
 optional = false
 python-versions = "~=3.6"
+develop = false
 
 [package.dependencies]
 attrs = ">=19,<21"
@@ -119,9 +120,15 @@ compare = ["commonmark (>=0.9.1,<0.10.0)", "markdown (>=3.2.2,<3.3.0)", "mistune
 rtd = ["myst-nb (>=0.10.0,<0.11.0)", "sphinx-book-theme", "sphinx-panels (>=0.4.0,<0.5.0)", "sphinx-copybutton", "sphinx (>=2,<4)", "pyyaml"]
 testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "pytest-regressions", "pytest-benchmark (>=3.2,<4.0)", "psutil"]
 
+[package.source]
+type = "git"
+url = "https://github.com/executablebooks/markdown-it-py.git"
+reference = "master"
+resolved_reference = "9877c0c2d0202662ab34ee30d8c07b0bea1719b8"
+
 [[package]]
 name = "mdformat"
-version = "0.5.1"
+version = "0.5.2"
 description = "CommonMark compliant Markdown formatter"
 category = "main"
 optional = false
@@ -269,7 +276,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "pytest-randomly"
-version = "3.4.1"
+version = "3.5.0"
 description = "Pytest plugin to randomly order tests and control random.seed."
 category = "dev"
 optional = false
@@ -353,7 +360,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "3868b2ec7354a0551459da018ae75925c3c6e4548bedea7ef06dfc0afec5c9f3"
+content-hash = "148be53f91e8bab0155e8f492aa97ab3db813c65d2e935fd631610f573aa4ce1"
 
 [metadata.files]
 appdirs = [
@@ -399,13 +406,10 @@ iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
 ]
-markdown-it-py = [
-    {file = "markdown-it-py-0.5.6.tar.gz", hash = "sha256:6143d11221495edbf71beb7e455821ae6c8f0156710a1b11812662ed6dbd165b"},
-    {file = "markdown_it_py-0.5.6-py3-none-any.whl", hash = "sha256:dcfe4a0c6bef711cb6c42494ebf23a3cfe6f249bf995556498497dd8193bfc22"},
-]
+markdown-it-py = []
 mdformat = [
-    {file = "mdformat-0.5.1-py3-none-any.whl", hash = "sha256:e006bb755832bcef4913c5994063b2e69f72c119f860cdf132de621547b46258"},
-    {file = "mdformat-0.5.1.tar.gz", hash = "sha256:8a6c37485fea72e48081338f169f1bac71f59d18b53f1a0e3aff26ba20cbf9d5"},
+    {file = "mdformat-0.5.2-py3-none-any.whl", hash = "sha256:89dc05998b6e3ef39dd497d0538047afe3e6697b048b4227fb51289d41a3140b"},
+    {file = "mdformat-0.5.2.tar.gz", hash = "sha256:f7d3857794043b9ff9bce29400a765479a6a49ed4b94a6b75ef409a1dc882fca"},
 ]
 mdformat_tables = []
 mypy = [
@@ -457,8 +461,8 @@ pytest = [
     {file = "pytest-6.1.2.tar.gz", hash = "sha256:c0a7e94a8cdbc5422a51ccdad8e6f1024795939cc89159a0ae7f0b316ad3823e"},
 ]
 pytest-randomly = [
-    {file = "pytest-randomly-3.4.1.tar.gz", hash = "sha256:5fd0dbeeb218a7ce029690a8100453cd8d6a7972cf9d8e657690352692e92c69"},
-    {file = "pytest_randomly-3.4.1-py3-none-any.whl", hash = "sha256:2c4df1390db72a33a4f44fac0c780e7883cd5968238efa2a2bdbdd54e3fc6681"},
+    {file = "pytest-randomly-3.5.0.tar.gz", hash = "sha256:440cec143fd9b0adeb072006c71e0294402a2bc2ccd08079c2341087ba4cf2d1"},
+    {file = "pytest_randomly-3.5.0-py3-none-any.whl", hash = "sha256:9db10d160237f3f8ee60cef72e4cb9ea88d2893c9dd5c8aa334b060cdeb67c3a"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},

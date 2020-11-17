@@ -31,10 +31,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-mdformat = ">=0.5.1"
+mdformat = ">=0.5.2"
 # TODO: Use PyPI dependency after next release
 #mdformat-tables = ">0.2.0"
 mdformat-tables = { git = "https://github.com/executablebooks/mdformat-tables.git", branch = "master" }
+# TODO: Remove this when version >0.5.6 released
+markdown-it-py = { git = "https://github.com/executablebooks/markdown-it-py.git", branch = "master" }
 
 [tool.poetry.dev-dependencies]
 # Tests

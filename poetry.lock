@@ -128,7 +128,7 @@ resolved_reference = "9877c0c2d0202662ab34ee30d8c07b0bea1719b8"
 
 [[package]]
 name = "mdformat"
-version = "0.5.2"
+version = "0.5.3"
 description = "CommonMark compliant Markdown formatter"
 category = "main"
 optional = false
@@ -360,7 +360,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "148be53f91e8bab0155e8f492aa97ab3db813c65d2e935fd631610f573aa4ce1"
+content-hash = "e20cd095291c1a20106b2106c9241b6693ea444844100d33b38ab9bb99ef52ef"
 
 [metadata.files]
 appdirs = [
@@ -408,8 +408,8 @@ iniconfig = [
 ]
 markdown-it-py = []
 mdformat = [
-    {file = "mdformat-0.5.2-py3-none-any.whl", hash = "sha256:89dc05998b6e3ef39dd497d0538047afe3e6697b048b4227fb51289d41a3140b"},
-    {file = "mdformat-0.5.2.tar.gz", hash = "sha256:f7d3857794043b9ff9bce29400a765479a6a49ed4b94a6b75ef409a1dc882fca"},
+    {file = "mdformat-0.5.3-py3-none-any.whl", hash = "sha256:082d7645c61d215879a3d63867e5923d8ec121f59a837fd49e41865a7b69c3fa"},
+    {file = "mdformat-0.5.3.tar.gz", hash = "sha256:3916413ba2187422276287045745d8538cec4434bd3bee3c6fc0089552827e3d"},
 ]
 mdformat_tables = []
 mypy = [

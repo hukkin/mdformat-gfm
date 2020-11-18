@@ -43,3 +43,10 @@ Mix tasks and other items
 1. [ ] task not done
 1. not a task
 .
+
+Reduce tasklist whitespace
+.
+-   [x]    reduce spaces
+.
+- [x] reduce spaces
+.

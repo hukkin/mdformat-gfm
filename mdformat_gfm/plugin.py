@@ -1,3 +1,4 @@
+import re
 from typing import Any, Mapping, Optional, Sequence, Tuple
 
 from markdown_it import MarkdownIt
@@ -67,10 +68,7 @@ def render_token(
             tokens, options, env, start=index, stop=closing_index + 1, finalize=False
         )
 
-        text = text.replace(
-            MARKERS.LIST_ITEM + MARKERS.LIST_INDENT_FIRST_LINE,
-            f"{MARKERS.LIST_ITEM} [{checkmark}]",
-        )
+        text = re.sub(fr"{MARKERS.LIST_INDENT_FIRST_LINE}\s+", f" [{checkmark}] ", text)
         return text, closing_index
 
     return None

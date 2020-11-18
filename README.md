@@ -7,23 +7,17 @@
 
 ## Description
 
-By default, [mdformat](https://github.com/executablebooks/mdformat) is [CommonMark](https://spec.commonmark.org/current/) compliant.
-Mdformat-gfm is an mdformat plugin that changes the target specification to [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/).
+[Mdformat](https://github.com/executablebooks/mdformat) is a formatter for
+[CommonMark](https://spec.commonmark.org/current/)
+compliant Markdown.
 
-## Development status
+Mdformat-gfm is an mdformat plugin that changes the target specification to
+[GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/),
+making the tool able to format the following syntax extensions:
 
-This plugin is not feature complete with the GFM spec yet.
-
-**Done:**
-
-- ✔ Tables
-- ✔ Strikethrough
-- ✔ Task list items
-
-**To do:**
-
-- ❌ Extended autolinks
-- ❌ Disallowed raw HTML
+- [tables](https://github.github.com/gfm/#tables-extension-)
+- [task list items](https://github.github.com/gfm/#task-list-items-extension-)
+- [strikethroughs](https://github.github.com/gfm/#strikethrough-extension-)
 
 ## Install
 
@@ -36,3 +30,9 @@ pip install mdformat-gfm
 ```sh
 mdformat <filename>
 ```
+
+## Limitations
+
+This plugin does currently not implement any special handling for the GFM
+[autolink extension](https://github.github.com/gfm/#autolinks-extension-).
+Please file a bug report for cases where an autolink breaks formatting.

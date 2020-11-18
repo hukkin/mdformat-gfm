@@ -30,7 +30,7 @@ packages = [
 "gfm" = "mdformat_gfm.plugin"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 mdformat = ">=0.5.3"
 # TODO: Use PyPI dependency after next release
 #mdformat-tables = ">0.2.0"

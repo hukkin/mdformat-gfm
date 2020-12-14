@@ -2,10 +2,10 @@ import re
 from typing import Any, Mapping, Optional, Sequence, Tuple
 
 from markdown_it import MarkdownIt
-from markdown_it.extensions.tasklists import tasklists_plugin
 from markdown_it.token import Token
 import mdformat.plugins
 from mdformat.renderer import MARKERS, MDRenderer
+from mdit_py_plugins.tasklists import tasklists_plugin
 
 
 def update_mdit(mdit: MarkdownIt) -> None:

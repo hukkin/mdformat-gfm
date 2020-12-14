@@ -32,6 +32,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.6"
 mdformat = ">=0.5.3"
+markdown-it-py = ">=0.5.8"
+mdit-py-plugins = ">=0.2.0"
 mdformat-tables = ">=0.2.1"
 
 [tool.poetry.dev-dependencies]

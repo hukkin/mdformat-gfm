@@ -30,7 +30,7 @@ packages = [
 "gfm" = "mdformat_gfm.plugin"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 mdformat = ">=0.5.3"
 markdown-it-py = ">=0.5.8"
 mdit-py-plugins = ">=0.2.0"

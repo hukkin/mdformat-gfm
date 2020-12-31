@@ -59,6 +59,9 @@ def render_token(
         # tasks are annotated by html. We need to remove the HTML.
         inline_token = tokens[index + 2]
         assert inline_token.type == "inline"
+        assert (
+            inline_token.children is not None
+        ), "inline token's children must not be None"
         html_inline = inline_token.children[0]
         assert 'class="task-list-item-checkbox"' in html_inline.content
         inline_token.children.remove(html_inline)

@@ -25,5 +25,5 @@ def test_commonmark_spec(entry):
     md_original = entry["md"]
     md_new = mdformat.text(md_original, extensions={"gfm"})
     md_2nd_pass = mdformat.text(md_new, extensions={"gfm"})
-    assert is_md_equal(md_original, md_new, options={}, extensions={"gfm"})
+    assert is_md_equal(md_original, md_new, extensions={"gfm"})
     assert md_new == md_2nd_pass

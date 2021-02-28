@@ -31,10 +31,14 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-mdformat = ">=0.5.3,<0.6.0"
-markdown-it-py = ">=0.5.8"
+# TODO: non git markdown-it-py, mdformat and mdformat-tables
+mdformat = { git = "https://github.com/executablebooks/mdformat.git", branch = "tree-structure" }
+#mdformat = ">=0.5.3,<0.6.0"
+markdown-it-py = { git = "https://github.com/hukkinj1/markdown-it-py.git", branch = "tree-types" }
+#markdown-it-py = ">=0.5.8"
 mdit-py-plugins = ">=0.2.0"
-mdformat-tables = ">=0.2.1"
+mdformat-tables = { git = "https://github.com/hukkinj1/mdformat-tables.git", branch = "tree-structure" }
+#mdformat-tables = ">=0.2.1"
 
 [tool.poetry.dev-dependencies]
 # Tests

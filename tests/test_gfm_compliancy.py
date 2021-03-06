@@ -6,11 +6,7 @@ from mdformat._util import is_md_equal
 import pytest
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
-for path in TEST_DATA_DIR.glob("gfm_spec.commit-*.json"):
-    SPECTESTS_PATH = path
-    break
-else:
-    pytest.fail("No GFM spec JSON found.")
+SPECTESTS_PATH = next(TEST_DATA_DIR.glob("gfm_spec.commit-*.json"))
 SPECTESTS_CASES = tuple(
     {"name": str(entry["example"]), "md": entry["markdown"]}
     for entry in json.loads(SPECTESTS_PATH.read_text(encoding="utf-8"))

@@ -32,7 +32,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.6.1"
 mdformat = ">=0.6.0,<0.7.0"
-markdown-it-py = ">=0.5.8"
+markdown-it-py = { version = ">=0.5.8", extras = [ "linkify" ] }
 mdit-py-plugins = ">=0.2.0"
 mdformat-tables = ">=0.3.0"
 

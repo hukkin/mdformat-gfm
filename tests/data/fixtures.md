@@ -50,3 +50,10 @@ Reduce tasklist whitespace
 .
 - [x] reduce spaces
 .
+
+Autolink extension
+.
+www.python.org/autolink\extension
+.
+www.python.org/autolink\extension
+.

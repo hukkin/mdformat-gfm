@@ -9,6 +9,10 @@ from mdit_py_plugins.tasklists import tasklists_plugin
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
+    # Enable linkify-it-py (for GFM autolink extension)
+    mdit.options["linkify"] = True
+    mdit.enable("linkify")
+
     # Enable mdformat-tables plugin
     tables_plugin = mdformat.plugins.PARSER_EXTENSIONS["tables"]
     if tables_plugin not in mdit.options["parser_extension"]:

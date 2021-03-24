@@ -70,18 +70,18 @@ python-versions = "*"
 
 [[package]]
 name = "identify"
-version = "1.6.1"
+version = "2.2.0"
 description = "File identification library for Python"
 category = "dev"
 optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
+python-versions = ">=3.6.1"
 
 [package.extras]
-license = ["editdistance"]
+license = ["editdistance-s"]
 
 [[package]]
 name = "importlib-metadata"
-version = "3.7.0"
+version = "3.7.3"
 description = "Read metadata from Python packages"
 category = "main"
 optional = false
@@ -97,7 +97,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 
 [[package]]
 name = "importlib-resources"
-version = "5.1.0"
+version = "5.1.2"
 description = "Read resources from Python packages"
 category = "dev"
 optional = false
@@ -108,7 +108,7 @@ zipp = {version = ">=0.4", markers = "python_version < \"3.8\""}
 
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "pytest-black (>=0.3.7)", "pytest-mypy"]
+testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [[package]]
 name = "iniconfig"
@@ -125,7 +125,6 @@ description = "Python port of markdown-it. Markdown parsing, done right!"
 category = "main"
 optional = false
 python-versions = "~=3.6"
-develop = false
 
 [package.dependencies]
 attrs = ">=19,<21"
@@ -138,56 +137,36 @@ linkify = ["linkify-it-py (>=1.0,<2.0)"]
 rtd = ["myst-nb (>=0.11.1,<0.12.0)", "sphinx-book-theme", "sphinx-panels (>=0.4.0,<0.5.0)", "sphinx-copybutton", "sphinx (>=2,<4)", "pyyaml"]
 testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "pytest-regressions", "pytest-benchmark (>=3.2,<4.0)", "psutil"]
 
-[package.source]
-type = "git"
-url = "https://github.com/hukkinj1/markdown-it-py.git"
-reference = "tree-types"
-resolved_reference = "aea99cedb7157f30f30e177be46f2524319fd4ee"
-
 [[package]]
 name = "mdformat"
-version = "0.5.7"
+version = "0.6.1"
 description = "CommonMark compliant Markdown formatter"
 category = "main"
 optional = false
-python-versions = "^3.6.1"
-develop = false
+python-versions = ">=3.6.1,<4.0.0"
 
 [package.dependencies]
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
-markdown-it-py = "branch tree-types"
-typing-extensions = {version = "*", markers = "python_version < \"3.8\""}
-
-[package.source]
-type = "git"
-url = "https://github.com/executablebooks/mdformat.git"
-reference = "tree-structure"
-resolved_reference = "54beed787f76837bdcbf3266f7d2bc1ae6f57146"
+markdown-it-py = ">=0.5.5,<0.7.0"
+typing-extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
 [[package]]
-name = "mdformat_tables"
-version = "0.2.1"
+name = "mdformat-tables"
+version = "0.3.0"
 description = "An mdformat plugin for rendering tables."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-develop = false
 
 [package.dependencies]
-mdformat = ">=0.3.2,<0.6.0"
+mdformat = ">=0.6.0,<0.7.0"
 
 [package.extras]
 test = ["pytest (>=6.0,<7.0)", "coverage", "pytest-cov"]
 
-[package.source]
-type = "git"
-url = "https://github.com/hukkinj1/mdformat-tables.git"
-reference = "tree-structure"
-resolved_reference = "7b13c847ed7512a1f24e3ebd683cd7c6ec4bb59b"
-
 [[package]]
 name = "mdit-py-plugins"
-version = "0.2.5"
+version = "0.2.6"
 description = "Collection of plugins for markdown-it-py"
 category = "main"
 optional = false
@@ -259,7 +238,7 @@ dev = ["pre-commit", "tox"]
 
 [[package]]
 name = "pre-commit"
-version = "2.10.1"
+version = "2.11.1"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -367,7 +346,7 @@ python-versions = "*"
 
 [[package]]
 name = "virtualenv"
-version = "20.4.2"
+version = "20.4.3"
 description = "Virtual Python Environment builder"
 category = "dev"
 optional = false
@@ -387,20 +366,20 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 
 [[package]]
 name = "zipp"
-version = "3.4.0"
+version = "3.4.1"
 description = "Backport of pathlib-compatible object wrapper for zip files"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
+testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "5f48b6bd943b972fbb88a59def7508a0d1612749d12abaa3ee55a23471923607"
+content-hash = "d1a8967a29601e7b4464858774f35e19fcb3a52c44a95ee8f5220256f50d8e42"
 
 [metadata.files]
 appdirs = [
@@ -435,27 +414,36 @@ filelock = [
     {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
 ]
 identify = [
-    {file = "identify-1.6.1-py2.py3-none-any.whl", hash = "sha256:ec4698722b9a8a6f2aa5f9ff9cc687956494f0ba734941659ad7f018cf457e44"},
-    {file = "identify-1.6.1.tar.gz", hash = "sha256:7b435803dc79a0f0ce887887a62ad360f3a9e8162ac0db9ee649d5d24085bf30"},
+    {file = "identify-2.2.0-py2.py3-none-any.whl", hash = "sha256:39c0b110c9d0cd2391b6c38cd0ff679ee4b4e98f8db8b06c5d9d9e502711a1e1"},
+    {file = "identify-2.2.0.tar.gz", hash = "sha256:efbf090a619255bc31c4fbba709e2805f7d30913fd4854ad84ace52bd276e2f6"},
 ]
 importlib-metadata = [
-    {file = "importlib_metadata-3.7.0-py3-none-any.whl", hash = "sha256:c6af5dbf1126cd959c4a8d8efd61d4d3c83bddb0459a17e554284a077574b614"},
-    {file = "importlib_metadata-3.7.0.tar.gz", hash = "sha256:24499ffde1b80be08284100393955842be4a59c7c16bbf2738aad0e464a8e0aa"},
+    {file = "importlib_metadata-3.7.3-py3-none-any.whl", hash = "sha256:b74159469b464a99cb8cc3e21973e4d96e05d3024d337313fedb618a6e86e6f4"},
+    {file = "importlib_metadata-3.7.3.tar.gz", hash = "sha256:742add720a20d0467df2f444ae41704000f50e1234f46174b51f9c6031a1bd71"},
 ]
 importlib-resources = [
-    {file = "importlib_resources-5.1.0-py3-none-any.whl", hash = "sha256:885b8eae589179f661c909d699a546cf10d83692553e34dca1bf5eb06f7f6217"},
-    {file = "importlib_resources-5.1.0.tar.gz", hash = "sha256:bfdad047bce441405a49cf8eb48ddce5e56c696e185f59147a8b79e75e9e6380"},
+    {file = "importlib_resources-5.1.2-py3-none-any.whl", hash = "sha256:ebab3efe74d83b04d6bf5cd9a17f0c5c93e60fb60f30c90f56265fce4682a469"},
+    {file = "importlib_resources-5.1.2.tar.gz", hash = "sha256:642586fc4740bd1cad7690f836b3321309402b20b332529f25617ff18e8e1370"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
 ]
-markdown-it-py = []
-mdformat = []
-mdformat_tables = []
+markdown-it-py = [
+    {file = "markdown-it-py-0.6.2.tar.gz", hash = "sha256:c3b9f995be0792cbbc8ab2f53d74072eb7ff8a8b622be8d61d38ab879709eca3"},
+    {file = "markdown_it_py-0.6.2-py3-none-any.whl", hash = "sha256:30b3e9f8198dc82a5df0dcb73fd31d56cd9a43bf8a747feb10b2ba74f962bcb1"},
+]
+mdformat = [
+    {file = "mdformat-0.6.1-py3-none-any.whl", hash = "sha256:5fb0c6ffc9c74c88443aa7cf446d33e0872329f6efb89950350f80153cc142ef"},
+    {file = "mdformat-0.6.1.tar.gz", hash = "sha256:0addcbada9c1baa781f0299e98eb26cd3802b36e03935b2213bc8b24a28a8a05"},
+]
+mdformat-tables = [
+    {file = "mdformat_tables-0.3.0-py3-none-any.whl", hash = "sha256:cce24ca56a2a860f15475084b159bf71330480cb64afcf75a0f7411d62aeeaa9"},
+    {file = "mdformat_tables-0.3.0.tar.gz", hash = "sha256:312feb8f0ac01f1d672c34fa22efb89469e11f9ba4849fbba8866a241eb0d442"},
+]
 mdit-py-plugins = [
-    {file = "mdit-py-plugins-0.2.5.tar.gz", hash = "sha256:06dbda99e7d81184c4f6de7c7e3409b29f5cef35404beed6feaf624646219bf5"},
-    {file = "mdit_py_plugins-0.2.5-py3-none-any.whl", hash = "sha256:3c78db5cfdcf8f55f0af2b096de391bffcef0b3600222f434efb016d7c267cec"},
+    {file = "mdit-py-plugins-0.2.6.tar.gz", hash = "sha256:1e467ca2ea056e8065cbd5d6c61e5052bb50826bde84c40f6a5ed77e82125710"},
+    {file = "mdit_py_plugins-0.2.6-py3-none-any.whl", hash = "sha256:77fd75dad81109ee91f30eb49146196f79afbbae041f298ae4886c8c2b5e23d7"},
 ]
 mypy = [
     {file = "mypy-0.812-cp35-cp35m-macosx_10_9_x86_64.whl", hash = "sha256:a26f8ec704e5a7423c8824d425086705e381b4f1dfdef6e3a1edab7ba174ec49"},
@@ -498,8 +486,8 @@ pluggy = [
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.10.1-py2.py3-none-any.whl", hash = "sha256:16212d1fde2bed88159287da88ff03796863854b04dc9f838a55979325a3d20e"},
-    {file = "pre_commit-2.10.1.tar.gz", hash = "sha256:399baf78f13f4de82a29b649afd74bef2c4e28eb4f021661fc7f29246e8c7a3a"},
+    {file = "pre_commit-2.11.1-py2.py3-none-any.whl", hash = "sha256:94c82f1bf5899d56edb1d926732f4e75a7df29a0c8c092559c77420c9d62428b"},
+    {file = "pre_commit-2.11.1.tar.gz", hash = "sha256:de55c5c72ce80d79106e48beb1b54104d16495ce7f95b0c7b13d4784193a00af"},
 ]
 py = [
     {file = "py-1.10.0-py2.py3-none-any.whl", hash = "sha256:3b80836aa6d1feeaa108e046da6423ab8f6ceda6468545ae8d02d9d58d18818a"},
@@ -586,10 +574,10 @@ typing-extensions = [
     {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
 ]
 virtualenv = [
-    {file = "virtualenv-20.4.2-py2.py3-none-any.whl", hash = "sha256:2be72df684b74df0ea47679a7df93fd0e04e72520022c57b479d8f881485dbe3"},
-    {file = "virtualenv-20.4.2.tar.gz", hash = "sha256:147b43894e51dd6bba882cf9c282447f780e2251cd35172403745fc381a0a80d"},
+    {file = "virtualenv-20.4.3-py2.py3-none-any.whl", hash = "sha256:83f95875d382c7abafe06bd2a4cdd1b363e1bb77e02f155ebe8ac082a916b37c"},
+    {file = "virtualenv-20.4.3.tar.gz", hash = "sha256:49ec4eb4c224c6f7dd81bb6d0a28a09ecae5894f4e593c89b0db0885f565a107"},
 ]
 zipp = [
-    {file = "zipp-3.4.0-py3-none-any.whl", hash = "sha256:102c24ef8f171fd729d46599845e95c7ab894a4cf45f5de11a44cc7444fb1108"},
-    {file = "zipp-3.4.0.tar.gz", hash = "sha256:ed5eee1974372595f9e416cc7bbeeb12335201d8081ca8a0743c954d4446e5cb"},
+    {file = "zipp-3.4.1-py3-none-any.whl", hash = "sha256:51cb66cc54621609dd593d1787f286ee42a5c0adbb4b29abea5a63edc3e03098"},
+    {file = "zipp-3.4.1.tar.gz", hash = "sha256:3607921face881ba3e026887d8150cca609d517579abe052ac81fc5aeffdbd76"},
 ]

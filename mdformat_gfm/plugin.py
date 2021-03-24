@@ -53,8 +53,8 @@ def _list_item_renderer(
     html_inline_node = inline_node.children[0]
     assert 'class="task-list-item-checkbox"' in html_inline_node.content
 
-    # Type ignore because this is naughty, shouldn't rely on `.remove` here
-    inline_node.children.remove(html_inline_node)  # type: ignore
+    # This is naughty, shouldn't mutate and rely on `.remove` here
+    inline_node.children.remove(html_inline_node)
 
     checkmark = "x" if 'checked="checked"' in html_inline_node.content else " "
 

@@ -19,7 +19,7 @@ def _monkeypatch_is_text_inside_autolink(node: "RenderTreeNode") -> bool:
     )
 
 
-mdformat.renderer._default_renderers.is_text_inside_autolink = (
+mdformat.renderer._default_renderers.is_text_inside_autolink = (  # type: ignore
     _monkeypatch_is_text_inside_autolink
 )
 

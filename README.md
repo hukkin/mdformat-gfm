@@ -19,6 +19,8 @@ making the tool able to format the following syntax extensions:
 - [task list items](https://github.github.com/gfm/#task-list-items-extension-)
 - [strikethroughs](https://github.github.com/gfm/#strikethrough-extension-)
 - [autolinks](https://github.github.com/gfm/#autolinks-extension-)
+- [disallowed raw HTML](https://github.github.com/gfm/#disallowed-raw-html-extension-)
+  (note that no changes are required from a formatter to support this extension)
 
 ## Install
 

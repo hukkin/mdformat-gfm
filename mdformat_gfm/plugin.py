@@ -4,8 +4,24 @@ from typing import Any, Mapping, MutableMapping
 from markdown_it import MarkdownIt
 import mdformat.plugins
 from mdformat.renderer import DEFAULT_RENDERER_FUNCS, RenderTreeNode
+import mdformat.renderer._default_renderers
 from mdformat.renderer.typing import RendererFunc
 from mdit_py_plugins.tasklists import tasklists_plugin
+
+
+# Make a nasty monkey patch to private API. Make this change upstream instead.
+def _monkeypatch_is_text_inside_autolink(node: "RenderTreeNode") -> bool:
+    assert node.type == "text"
+    return (
+        node.parent  # type: ignore
+        and node.parent.type == "link"
+        and node.parent.info == "auto"
+    )
+
+
+mdformat.renderer._default_renderers.is_text_inside_autolink = (
+    _monkeypatch_is_text_inside_autolink
+)
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
@@ -24,6 +40,20 @@ def update_mdit(mdit: MarkdownIt) -> None:
 
     # Enable tasklist markdown-it extension
     mdit.use(tasklists_plugin)
+
+
+def _link_renderer(
+    node: RenderTreeNode,
+    renderer_funcs: Mapping[str, RendererFunc],
+    options: Mapping[str, Any],
+    env: MutableMapping,
+) -> str:
+    """Extend the default link renderer to handle linkify links."""
+    if node.markup == "linkify":
+        return "".join(
+            child.render(renderer_funcs, options, env) for child in node.children
+        )
+    return DEFAULT_RENDERER_FUNCS["link"](node, renderer_funcs, options, env)
 
 
 def _strikethrough_renderer(
@@ -68,4 +98,8 @@ def _list_item_renderer(
     return f"[{checkmark}] {text}"
 
 
-RENDERER_FUNCS = {"s": _strikethrough_renderer, "list_item": _list_item_renderer}
+RENDERER_FUNCS = {
+    "s": _strikethrough_renderer,
+    "list_item": _list_item_renderer,
+    "link": _link_renderer,
+}

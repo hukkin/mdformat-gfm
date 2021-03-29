@@ -4,24 +4,8 @@ from typing import Any, Mapping, MutableMapping
 from markdown_it import MarkdownIt
 import mdformat.plugins
 from mdformat.renderer import DEFAULT_RENDERER_FUNCS, RenderTreeNode
-import mdformat.renderer._default_renderers
 from mdformat.renderer.typing import RendererFunc
 from mdit_py_plugins.tasklists import tasklists_plugin
-
-
-# Make a nasty monkey patch to private API. Make this change upstream instead.
-def _monkeypatch_is_text_inside_autolink(node: "RenderTreeNode") -> bool:
-    assert node.type == "text"
-    return (
-        node.parent  # type: ignore
-        and node.parent.type == "link"
-        and node.parent.info == "auto"
-    )
-
-
-mdformat.renderer._default_renderers.is_text_inside_autolink = (  # type: ignore
-    _monkeypatch_is_text_inside_autolink
-)
 
 
 def update_mdit(mdit: MarkdownIt) -> None:

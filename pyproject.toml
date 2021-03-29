@@ -31,7 +31,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-mdformat = ">=0.6.0,<0.7.0"
+mdformat = ">=0.6.2,<0.7.0"
 # TODO: switch to the PyPI dependency and fix version number after next release!
 markdown-it-py = { git = "https://github.com/executablebooks/markdown-it-py.git", branch = "master", extras = [ "linkify" ] }
 #markdown-it-py = { version = ">=0.5.8", extras = [ "linkify" ] }

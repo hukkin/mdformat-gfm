@@ -31,10 +31,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-mdformat = ">=0.6.0,<0.7.0"
+mdformat = ">=0.7.1,<0.8.0"
 markdown-it-py = ">=0.5.8"
 mdit-py-plugins = ">=0.2.0"
-mdformat-tables = ">=0.3.0"
+#mdformat-tables = ">=0.3.0"
+# TODO: switch to the PyPI dependency and fix version number after next release!
+mdformat-tables = { git = "https://github.com/hukkinj1/mdformat-tables.git", branch = "fix-escapes" }
 
 [tool.poetry.dev-dependencies]
 # Tests

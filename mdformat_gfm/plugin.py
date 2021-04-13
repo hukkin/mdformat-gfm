@@ -71,9 +71,7 @@ def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
 def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     """Extend the default link renderer to handle linkify links."""
     if node.markup == "linkify":
-        return "".join(
-            child.render(context) for child in node.children
-        )
+        return "".join(child.render(context) for child in node.children)
     return _render_with_default_renderer(node, context)
 
 
@@ -84,5 +82,9 @@ def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str
     return text
 
 
-RENDERERS = {"s": _strikethrough_renderer, "list_item": _list_item_renderer, "link": _link_renderer}
+RENDERERS = {
+    "s": _strikethrough_renderer,
+    "list_item": _list_item_renderer,
+    "link": _link_renderer,
+}
 POSTPROCESSORS = {"text": _escape_text}

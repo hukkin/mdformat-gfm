@@ -151,25 +151,18 @@ markdown-it-py = ">=0.5.5,<0.7.0"
 typing-extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
 [[package]]
-name = "mdformat_tables"
-version = "0.3.0"
+name = "mdformat-tables"
+version = "0.4.0"
 description = "An mdformat plugin for rendering tables."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-develop = false
 
 [package.dependencies]
 mdformat = ">=0.7.0,<0.8.0"
 
 [package.extras]
 test = ["pytest (>=6.0,<7.0)", "coverage", "pytest-cov"]
-
-[package.source]
-type = "git"
-url = "https://github.com/hukkinj1/mdformat-tables.git"
-reference = "fix-escapes"
-resolved_reference = "e5f4257c115dea6119cbe730af3efb83d12616fb"
 
 [[package]]
 name = "mdit-py-plugins"
@@ -386,7 +379,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "931c027b5fc70d108ec6a3026b6b9ff71371859530d35dd0c2e26c746bd56d62"
+content-hash = "ecbf91785b9dc13684ab470217e72dbfbf9dd5a3091d6b9f99c133324e121c4c"
 
 [metadata.files]
 appdirs = [
@@ -445,7 +438,10 @@ mdformat = [
     {file = "mdformat-0.7.1-py3-none-any.whl", hash = "sha256:be9abe02a354e90fae4b169d82763143aea63a64e4996f1afe55ee92e75379bf"},
     {file = "mdformat-0.7.1.tar.gz", hash = "sha256:57ed86e79c4abfb9f031b99ee405be5fdc88de066a01a11e0813b34eb509c538"},
 ]
-mdformat_tables = []
+mdformat-tables = [
+    {file = "mdformat_tables-0.4.0-py3-none-any.whl", hash = "sha256:897c689b146140a6d71c7af9513b64a9760217eccdc3a3bf954b462d138f1638"},
+    {file = "mdformat_tables-0.4.0.tar.gz", hash = "sha256:a7a3a07d74eb8e4a0004766f808e2908125ac26103a7613f4038d712c8c4d305"},
+]
 mdit-py-plugins = [
     {file = "mdit-py-plugins-0.2.6.tar.gz", hash = "sha256:1e467ca2ea056e8065cbd5d6c61e5052bb50826bde84c40f6a5ed77e82125710"},
     {file = "mdit_py_plugins-0.2.6-py3-none-any.whl", hash = "sha256:77fd75dad81109ee91f30eb49146196f79afbbae041f298ae4886c8c2b5e23d7"},

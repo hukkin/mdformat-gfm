@@ -64,4 +64,12 @@ def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     return f"[{checkmark}] {text}"
 
 
+def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str:
+    # Escape strikethroughs
+    text = text.replace("~~", "\\~~")
+
+    return text
+
+
 RENDERERS = {"s": _strikethrough_renderer, "list_item": _list_item_renderer}
+POSTPROCESSORS = {"text": _escape_text}

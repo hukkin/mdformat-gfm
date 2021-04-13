@@ -18,6 +18,13 @@ Simple strikethrough
 ~~Hi~~ Hello, world!
 .
 
+Escaped strikethrough
+.
+~~Hi~\~ Hello, world!
+.
+\~~Hi\~~ Hello, world!
+.
+
 Nested tasklists
 .
 - [x] foo

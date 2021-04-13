@@ -1,10 +1,8 @@
 import re
-from typing import Any, Mapping, MutableMapping
 
 from markdown_it import MarkdownIt
 import mdformat.plugins
-from mdformat.renderer import DEFAULT_RENDERER_FUNCS, RenderTreeNode
-from mdformat.renderer.typing import RendererFunc
+from mdformat.renderer import DEFAULT_RENDERERS, RenderContext, RenderTreeNode
 from mdit_py_plugins.tasklists import tasklists_plugin
 
 
@@ -26,41 +24,29 @@ def update_mdit(mdit: MarkdownIt) -> None:
     mdit.use(tasklists_plugin)
 
 
-def _link_renderer(
-    node: RenderTreeNode,
-    renderer_funcs: Mapping[str, RendererFunc],
-    options: Mapping[str, Any],
-    env: MutableMapping,
-) -> str:
-    """Extend the default link renderer to handle linkify links."""
-    if node.markup == "linkify":
-        return "".join(
-            child.render(renderer_funcs, options, env) for child in node.children
-        )
-    return DEFAULT_RENDERER_FUNCS["link"](node, renderer_funcs, options, env)
-
-
-def _strikethrough_renderer(
-    node: RenderTreeNode,
-    renderer_funcs: Mapping[str, RendererFunc],
-    options: Mapping[str, Any],
-    env: MutableMapping,
-) -> str:
-    content = "".join(
-        child.render(renderer_funcs, options, env) for child in node.children
-    )
+def _strikethrough_renderer(node: RenderTreeNode, context: RenderContext) -> str:
+    content = "".join(child.render(context) for child in node.children)
     return "~~" + content + "~~"
 
 
-def _list_item_renderer(
-    node: RenderTreeNode,
-    renderer_funcs: Mapping[str, RendererFunc],
-    options: Mapping[str, Any],
-    env: MutableMapping,
-) -> str:
+def _render_with_default_renderer(node: RenderTreeNode, context: RenderContext) -> str:
+    """Render the node using default renderer instead of the one in `context`.
+
+    We don't use `RenderContext.with_default_renderer_for` because that
+    changes the default renderer in context, where it's applied
+    recursively to render functions of children.
+    """
+    syntax_type = node.type
+    text = DEFAULT_RENDERERS[syntax_type](node, context)
+    for postprocessor in context.postprocessors.get(syntax_type, ()):
+        text = postprocessor(text, node, context)
+    return text
+
+
+def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     classes = node.attrs.get("class")
     if classes is None or "task-list-item" not in classes:
-        return DEFAULT_RENDERER_FUNCS["list_item"](node, renderer_funcs, options, env)
+        return _render_with_default_renderer(node, context)
 
     # Tasklists extension makes a bit weird token stream where
     # tasks are annotated by html. We need to remove the HTML.
@@ -76,14 +62,27 @@ def _list_item_renderer(
 
     checkmark = "x" if 'checked="checked"' in html_inline_node.content else " "
 
-    text = DEFAULT_RENDERER_FUNCS["list_item"](node, renderer_funcs, options, env)
+    text = _render_with_default_renderer(node, context)
     # Strip leading space chars (numeric representations)
     text = re.sub(r"^(&#32;)+", "", text)
     return f"[{checkmark}] {text}"
 
 
-RENDERER_FUNCS = {
-    "s": _strikethrough_renderer,
-    "list_item": _list_item_renderer,
-    "link": _link_renderer,
-}
+def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
+    """Extend the default link renderer to handle linkify links."""
+    if node.markup == "linkify":
+        return "".join(
+            child.render(context) for child in node.children
+        )
+    return _render_with_default_renderer(node, context)
+
+
+def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str:
+    # Escape strikethroughs
+    text = text.replace("~~", "\\~~")
+
+    return text
+
+
+RENDERERS = {"s": _strikethrough_renderer, "list_item": _list_item_renderer, "link": _link_renderer}
+POSTPROCESSORS = {"text": _escape_text}

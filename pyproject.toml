@@ -33,7 +33,7 @@ packages = [
 python = "^3.6.1"
 mdformat = ">=0.7.0,<0.8.0"
 # TODO: switch to the PyPI dependency and fix version number after next release!
-markdown-it-py = { git = "https://github.com/executablebooks/markdown-it-py.git", branch = "master", extras = [ "linkify" ] }
+markdown-it-py = { git = "https://github.com/executablebooks/markdown-it-py.git", rev = "06d66b835721a20e2420f37cedde92ddd0d0e872", extras = [ "linkify" ] }
 #markdown-it-py = { version = ">=0.5.8", extras = [ "linkify" ] }
 mdit-py-plugins = ">=0.2.0"
 mdformat-tables = ">=0.4.0"

@@ -81,7 +81,7 @@ license = ["editdistance-s"]
 
 [[package]]
 name = "importlib-metadata"
-version = "3.10.1"
+version = "4.0.0"
 description = "Read metadata from Python packages"
 category = "main"
 optional = false
@@ -139,7 +139,7 @@ testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "pytest-regressions", 
 
 [[package]]
 name = "mdformat"
-version = "0.7.1"
+version = "0.7.4"
 description = "CommonMark compliant Markdown formatter"
 category = "main"
 optional = false
@@ -238,7 +238,7 @@ dev = ["pre-commit", "tox"]
 
 [[package]]
 name = "pre-commit"
-version = "2.12.0"
+version = "2.12.1"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -379,7 +379,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "ecbf91785b9dc13684ab470217e72dbfbf9dd5a3091d6b9f99c133324e121c4c"
+content-hash = "215039713615fe6d5c3096967e0b0adcf94aa9c7327d6b19257f258dba5486e6"
 
 [metadata.files]
 appdirs = [
@@ -419,8 +419,8 @@ identify = [
     {file = "identify-2.2.3.tar.gz", hash = "sha256:4537474817e0bbb8cea3e5b7504b7de6d44e3f169a90846cbc6adb0fc8294502"},
 ]
 importlib-metadata = [
-    {file = "importlib_metadata-3.10.1-py3-none-any.whl", hash = "sha256:2ec0faae539743ae6aaa84b49a169670a465f7f5d64e6add98388cc29fd1f2f6"},
-    {file = "importlib_metadata-3.10.1.tar.gz", hash = "sha256:c9356b657de65c53744046fa8f7358afe0714a1af7d570c00c3835c2d724a7c1"},
+    {file = "importlib_metadata-4.0.0-py3-none-any.whl", hash = "sha256:19192b88d959336bfa6bdaaaef99aeafec179eca19c47c804e555703ee5f07ef"},
+    {file = "importlib_metadata-4.0.0.tar.gz", hash = "sha256:2e881981c9748d7282b374b68e759c87745c25427b67ecf0cc67fb6637a1bff9"},
 ]
 importlib-resources = [
     {file = "importlib_resources-5.1.2-py3-none-any.whl", hash = "sha256:ebab3efe74d83b04d6bf5cd9a17f0c5c93e60fb60f30c90f56265fce4682a469"},
@@ -435,8 +435,8 @@ markdown-it-py = [
     {file = "markdown_it_py-0.6.2-py3-none-any.whl", hash = "sha256:30b3e9f8198dc82a5df0dcb73fd31d56cd9a43bf8a747feb10b2ba74f962bcb1"},
 ]
 mdformat = [
-    {file = "mdformat-0.7.1-py3-none-any.whl", hash = "sha256:be9abe02a354e90fae4b169d82763143aea63a64e4996f1afe55ee92e75379bf"},
-    {file = "mdformat-0.7.1.tar.gz", hash = "sha256:57ed86e79c4abfb9f031b99ee405be5fdc88de066a01a11e0813b34eb509c538"},
+    {file = "mdformat-0.7.4-py3-none-any.whl", hash = "sha256:d3201a295e2b2fab43d2d8860a9a7f075d72706dd04f6cffc844232ccc065455"},
+    {file = "mdformat-0.7.4.tar.gz", hash = "sha256:82bb3c62aaeb1ddf3b1b46c0e5f00b038d0bc8d07ae1cbf190a82fb6c3f5fb81"},
 ]
 mdformat-tables = [
     {file = "mdformat_tables-0.4.0-py3-none-any.whl", hash = "sha256:897c689b146140a6d71c7af9513b64a9760217eccdc3a3bf954b462d138f1638"},
@@ -487,8 +487,8 @@ pluggy = [
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.12.0-py2.py3-none-any.whl", hash = "sha256:029d53cb83c241fe7d66eeee1e24db426f42c858f15a38d20bcefd8d8e05c9da"},
-    {file = "pre_commit-2.12.0.tar.gz", hash = "sha256:46b6ffbab37986c47d0a35e40906ae029376deed89a0eb2e446fb6e67b220427"},
+    {file = "pre_commit-2.12.1-py2.py3-none-any.whl", hash = "sha256:70c5ec1f30406250b706eda35e868b87e3e4ba099af8787e3e8b4b01e84f4712"},
+    {file = "pre_commit-2.12.1.tar.gz", hash = "sha256:900d3c7e1bf4cf0374bb2893c24c23304952181405b4d88c9c40b72bda1bb8a9"},
 ]
 py = [
     {file = "py-1.10.0-py2.py3-none-any.whl", hash = "sha256:3b80836aa6d1feeaa108e046da6423ab8f6ceda6468545ae8d02d9d58d18818a"},

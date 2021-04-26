@@ -45,6 +45,7 @@ def _render_with_default_renderer(node: RenderTreeNode, context: RenderContext) 
 
 def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     classes = node.attrs.get("class")
+    assert classes is None or isinstance(classes, str)
     if classes is None or "task-list-item" not in classes:
         return _render_with_default_renderer(node, context)
 

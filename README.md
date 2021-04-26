@@ -18,6 +18,9 @@ making the tool able to format the following syntax extensions:
 - [tables](https://github.github.com/gfm/#tables-extension-)
 - [task list items](https://github.github.com/gfm/#task-list-items-extension-)
 - [strikethroughs](https://github.github.com/gfm/#strikethrough-extension-)
+- [autolinks](https://github.github.com/gfm/#autolinks-extension-)
+- [disallowed raw HTML](https://github.github.com/gfm/#disallowed-raw-html-extension-)
+  (note that no changes are required from a formatter to support this extension)
 
 ## Install
 
@@ -30,9 +33,3 @@ pip install mdformat-gfm
 ```sh
 mdformat <filename>
 ```
-
-## Limitations
-
-This plugin does currently not implement any special handling for the GFM
-[autolink extension](https://github.github.com/gfm/#autolinks-extension-).
-Please file a bug report for cases where an autolink breaks formatting.

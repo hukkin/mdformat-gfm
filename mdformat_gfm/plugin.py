@@ -7,6 +7,10 @@ from mdit_py_plugins.tasklists import tasklists_plugin
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
+    # Enable linkify-it-py (for GFM autolink extension)
+    mdit.options["linkify"] = True
+    mdit.enable("linkify")
+
     # Enable mdformat-tables plugin
     tables_plugin = mdformat.plugins.PARSER_EXTENSIONS["tables"]
     if tables_plugin not in mdit.options["parser_extension"]:
@@ -41,6 +45,7 @@ def _render_with_default_renderer(node: RenderTreeNode, context: RenderContext) 
 
 def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     classes = node.attrs.get("class")
+    assert classes is None or isinstance(classes, str)
     if classes is None or "task-list-item" not in classes:
         return _render_with_default_renderer(node, context)
 
@@ -61,7 +66,15 @@ def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     text = _render_with_default_renderer(node, context)
     # Strip leading space chars (numeric representations)
     text = re.sub(r"^(&#32;)+", "", text)
+    text = text.lstrip()
     return f"[{checkmark}] {text}"
+
+
+def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
+    """Extend the default link renderer to handle linkify links."""
+    if node.markup == "linkify":
+        return "".join(child.render(context) for child in node.children)
+    return _render_with_default_renderer(node, context)
 
 
 def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str:
@@ -71,5 +84,9 @@ def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str
     return text
 
 
-RENDERERS = {"s": _strikethrough_renderer, "list_item": _list_item_renderer}
+RENDERERS = {
+    "s": _strikethrough_renderer,
+    "list_item": _list_item_renderer,
+    "link": _link_renderer,
+}
 POSTPROCESSORS = {"text": _escape_text}

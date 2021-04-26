@@ -31,8 +31,14 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-mdformat = ">=0.7.0,<0.8.0"
-markdown-it-py = "*"  # Let `mdformat` choose version boundaries for `markdown-it-py`
+mdformat = ">=0.7.5,<0.8.0"
+
+# TODO replace current markdown-it-py and linkify-it-py dependencies with the line below,
+#      as soon as non pre-release markdown-it-py v1 is released.
+#markdown-it-py = { version = "*", extras = [ "linkify" ] }  # Let `mdformat` choose version boundaries for `markdown-it-py`
+markdown-it-py = ">=1.0.0b2,<2.0.0"
+linkify-it-py = ">=1.0.0,<2.0.0"
+
 mdit-py-plugins = ">=0.2.0,<0.3.0"
 mdformat-tables = ">=0.4.0"
 

@@ -65,6 +65,7 @@ def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     text = _render_with_default_renderer(node, context)
     # Strip leading space chars (numeric representations)
     text = re.sub(r"^(&#32;)+", "", text)
+    text = text.lstrip()
     return f"[{checkmark}] {text}"
 
 

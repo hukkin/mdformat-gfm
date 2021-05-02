@@ -14,7 +14,7 @@ repos:
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
-  rev: e66be67b9b6811913470f70c28b4d50f94d05b22  # frozen: 20.8b1
+  rev: b39999da7f451c285befac217f1f9a685774b34d  # frozen: 21.4b2
   hooks:
   - id: black
 - repo: https://gitlab.com/pycqa/flake8
@@ -30,7 +30,7 @@ repos:
   hooks:
   - id: docformatter
 - repo: https://github.com/executablebooks/mdformat
-  rev: 81004d0c8121946432e8265bc5cdec58a62da6f7  # frozen: 0.7.4
+  rev: 05db904714137bf4c34b021df696ae13c31b23da  # frozen: 0.7.5
   hooks:
   - id: mdformat
     files: 'README.md'

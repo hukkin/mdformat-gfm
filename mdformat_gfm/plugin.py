@@ -43,10 +43,15 @@ def _render_with_default_renderer(node: RenderTreeNode, context: RenderContext) 
     return text
 
 
+def _is_task_list_item(node: RenderTreeNode) -> bool:
+    assert node.type == "list_item"
+    classes = node.attrs.get("class", "")
+    assert isinstance(classes, str)
+    return "task-list-item" in classes
+
+
 def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
-    classes = node.attrs.get("class")
-    assert classes is None or isinstance(classes, str)
-    if classes is None or "task-list-item" not in classes:
+    if not _is_task_list_item(node):
         return _render_with_default_renderer(node, context)
 
     # Tasklists extension makes a bit weird token stream where
@@ -64,10 +69,43 @@ def _list_item_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     checkmark = "x" if 'checked="checked"' in html_inline_node.content else " "
 
     text = _render_with_default_renderer(node, context)
+
+    if context.do_wrap:
+        wrap_mode = context.options["mdformat"]["wrap"]
+        if isinstance(wrap_mode, int):
+            text = text[4:]  # Remove the "xxxx" added in `_postprocess_inline`
     # Strip leading space chars (numeric representations)
     text = re.sub(r"^(&#32;)+", "", text)
     text = text.lstrip()
     return f"[{checkmark}] {text}"
+
+
+def _postprocess_inline(text: str, node: RenderTreeNode, context: RenderContext) -> str:
+    """Postprocess inline tokens.
+
+    Fix word wrap of the first line in a task list item. It should be
+    wrapped narrower than normal because of the "[ ] " prefix that
+    indicates a task list item. We fool word wrap by prefixing an
+    unwrappable dummy string of the same length. This prefix needs to be
+    later removed (in `_list_item_renderer`).
+    """
+    if not context.do_wrap:
+        return text
+    wrap_mode = context.options["mdformat"]["wrap"]
+    if not isinstance(wrap_mode, int):
+        return text
+    if (
+        node.parent
+        and node.parent.type == "paragraph"
+        and not node.parent.previous_sibling
+        and node.parent.parent
+        and node.parent.parent.type == "list_item"
+        and _is_task_list_item(node.parent.parent)
+    ):
+        text = text.lstrip("\x00")
+        text = text.lstrip()
+        text = "xxxx" + text
+    return text
 
 
 def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
@@ -89,4 +127,4 @@ RENDERERS = {
     "list_item": _list_item_renderer,
     "link": _link_renderer,
 }
-POSTPROCESSORS = {"text": _escape_text}
+POSTPROCESSORS = {"text": _escape_text, "inline": _postprocess_inline}

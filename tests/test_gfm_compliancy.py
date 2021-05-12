@@ -23,8 +23,6 @@ def test_gfm_spec(entry):
     1. Markdown AST is the same before and after 1 pass of formatting
     2. Markdown after 1st pass and 2nd pass of formatting are equal
     """
-    if entry["name"] == "200":
-        pytest.xfail("Fix spec example 200 in upstream mdformat-tables!")
     md_original = entry["md"]
     md_new = mdformat.text(md_original, extensions={"gfm"})
     md_2nd_pass = mdformat.text(md_new, extensions={"gfm"})

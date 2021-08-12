@@ -14,14 +14,12 @@ license = "MIT"
 classifiers = [
     "Topic :: Documentation",
     "Topic :: Text Processing :: Markup",
-    "Typing :: Typed",
 ]
 keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
 packages = [
     {include = "mdformat_gfm"},
 ]
-#include = ["mdformat_gfm/py.typed"]
 
 #[tool.poetry.urls]
 #"Changelog" = "https://github.com/hukkinj1/mdformat-gfm/blob/master/CHANGELOG.md"
@@ -46,6 +44,9 @@ pre-commit = "*"
 mypy = "*"
 bump2version = "*"
 
+[tool.poetry.build]
+generate-setup-file = false
+
 
 [tool.isort]
 # Force imports to be sorted by module, independent of import type
@@ -63,3 +64,22 @@ profile = "black"
 [tool.pytest.ini_options]
 addopts = "--strict-markers --strict-config"
 xfail_strict = true
+
+
+[tool.mypy]
+show_error_codes = true
+warn_unreachable = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+# Disabling incremental mode is required for `warn_unused_configs = true` to work
+incremental = false
+disallow_untyped_defs = true
+check_untyped_defs = true
+strict_equality = true
+implicit_reexport = false
+no_implicit_optional = true
+overrides = [
+    { module = "tests.*", disallow_untyped_defs = false },
+    { module = "markdown_it.*", implicit_reexport = true },
+]

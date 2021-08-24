@@ -115,6 +115,7 @@ def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     """Extend the default link renderer to handle linkify links."""
     if node.markup == "linkify":
         autolink_url = node.attrs["href"]
+        assert isinstance(autolink_url, str)
         if RE_COMMONMARK_URL_SCHEME.match(
             autolink_url
         ) and not RE_COMMONMARK_URL_SCHEME.match(node.children[0].content):

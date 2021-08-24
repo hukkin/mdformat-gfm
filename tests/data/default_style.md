@@ -62,5 +62,12 @@ Autolink extension
 .
 www.python.org/autolink\extension
 .
-www.python.org/autolink\extension
+www.python.org/autolink%5Cextension
+.
+
+Autolink with percentage encoded space
+.
+https://mytest.com/files/word%20document.docx
+.
+https://mytest.com/files/word%20document.docx
 .

@@ -166,7 +166,7 @@ testing = ["coverage", "psutil", "pytest (>=3.6,<4)", "pytest-benchmark (>=3.2,<
 
 [[package]]
 name = "mdformat"
-version = "0.7.8"
+version = "0.7.9"
 description = "CommonMark compliant Markdown formatter"
 category = "main"
 optional = false
@@ -493,8 +493,8 @@ markdown-it-py = [
     {file = "markdown_it_py-1.1.0-py3-none-any.whl", hash = "sha256:98080fc0bc34c4f2bcf0846a096a9429acbd9d5d8e67ed34026c03c61c464389"},
 ]
 mdformat = [
-    {file = "mdformat-0.7.8-py3-none-any.whl", hash = "sha256:d317e05d971a34db7b8f047bfc1c39ecd04afc06e708b453b515fe5259b1ad59"},
-    {file = "mdformat-0.7.8.tar.gz", hash = "sha256:f20300ecb8ddbb610f8ca99a50dc1a1a6cfb7465c6a6055f9c21f113fd9fe3c2"},
+    {file = "mdformat-0.7.9-py3-none-any.whl", hash = "sha256:59b79575f3a2c7d6c442475c96c349ba063450911bbc95685c1d1d855ae22c5f"},
+    {file = "mdformat-0.7.9.tar.gz", hash = "sha256:ff506ac4cec7f5b805692c326484c36e8297aa7214e556603a79ee8c143b76e5"},
 ]
 mdformat-tables = [
     {file = "mdformat_tables-0.4.1-py3-none-any.whl", hash = "sha256:981f3dc7350027f78e3fd6a5fe8a16e123eec423af2d140e588d855751501019"},

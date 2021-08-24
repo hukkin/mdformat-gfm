@@ -5,6 +5,9 @@ import mdformat.plugins
 from mdformat.renderer import DEFAULT_RENDERERS, RenderContext, RenderTreeNode
 from mdit_py_plugins.tasklists import tasklists_plugin
 
+# A regex that matches a URL scheme and a following colon, as is valid in CommonMark
+RE_COMMONMARK_URL_SCHEME = re.compile("[A-Za-z][A-Za-z0-9+.-]{1,31}:")
+
 
 def update_mdit(mdit: MarkdownIt) -> None:
     # Enable linkify-it-py (for GFM autolink extension)
@@ -111,7 +114,14 @@ def _postprocess_inline(text: str, node: RenderTreeNode, context: RenderContext)
 def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     """Extend the default link renderer to handle linkify links."""
     if node.markup == "linkify":
-        return "".join(child.render(context) for child in node.children)
+        autolink_url = node.attrs["href"]
+        if RE_COMMONMARK_URL_SCHEME.match(
+            autolink_url
+        ) and not RE_COMMONMARK_URL_SCHEME.match(node.children[0].content):
+            autolink_url = autolink_url.split(":", maxsplit=1)[1]
+            if autolink_url.startswith("//"):
+                autolink_url = autolink_url[2:]
+        return autolink_url
     return _render_with_default_renderer(node, context)
 
 

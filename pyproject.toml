@@ -17,10 +17,6 @@ classifiers = [
 ]
 keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
-packages = [
-    {include = "mdformat_gfm"},
-]
-
 #[tool.poetry.urls]
 #"Changelog" = "https://github.com/hukkinj1/mdformat-gfm/blob/master/CHANGELOG.md"
 

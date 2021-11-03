@@ -116,9 +116,9 @@ def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
     if node.markup == "linkify":
         autolink_url = node.attrs["href"]
         assert isinstance(autolink_url, str)
-        if RE_COMMONMARK_URL_SCHEME.match(
-            autolink_url
-        ) and not RE_COMMONMARK_URL_SCHEME.match(node.children[0].content):
+        startswith_scheme = RE_COMMONMARK_URL_SCHEME.match(autolink_url)
+        scheme = startswith_scheme.group()
+        if startswith_scheme and not node.children[0].content.startswith(scheme):
             autolink_url = autolink_url.split(":", maxsplit=1)[1]
             if autolink_url.startswith("//"):
                 autolink_url = autolink_url[2:]

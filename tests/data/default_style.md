@@ -71,3 +71,10 @@ https://mytest.com/files/word%20document.docx
 .
 https://mytest.com/files/word%20document.docx
 .
+
+Autolink with port
+.
+test.com:443
+.
+test.com:443
+.

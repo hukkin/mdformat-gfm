@@ -1,24 +1,24 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: 38b88246ccc552bffaaf54259d064beeee434539  # frozen: v4.0.1
+  rev: f71fa2c1f9cf5cb705f73dffe4b21f7c61470ba9  # frozen: v4.4.0
   hooks:
   - id: check-yaml
   - id: check-toml
 - repo: https://github.com/pre-commit/pygrep-hooks
-  rev: 6f51a66bba59954917140ec2eeeaa4d5e630e6ce  # frozen: v1.9.0
+  rev: 3a6eb0fadf60b3cccfd80bad9dbb6fae7e47b316  # frozen: v1.10.0
   hooks:
   - id: python-use-type-annotations
   - id: python-check-blanket-noqa
 - repo: https://github.com/PyCQA/isort
-  rev: c5e8fa75dda5f764d20f66a215d71c21cfa198e1  # frozen: 5.10.1
+  rev: dbf82f2dd09ae41d9355bcd7ab69187a19e6bf2f  # frozen: 5.12.0
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
-  rev: 19f6aa8208154de4560ee1e4a3e638e120dcdba5  # frozen: 21.11b1
+  rev: 193ee766ca496871f93621d6b58d57a6564ff81b  # frozen: 23.7.0
   hooks:
   - id: black
 - repo: https://github.com/PyCQA/flake8
-  rev: cbeb4c9c4137cff1568659fcc48e8b85cddd0c8d  # frozen: 4.0.1
+  rev: 10f4af6dbcf93456ba7df762278ae61ba3120dc6  # frozen: 6.1.0
   hooks:
   - id: flake8
     additional_dependencies:
@@ -26,11 +26,11 @@ repos:
     - flake8-builtins
     - flake8-comprehensions
 - repo: https://github.com/myint/docformatter
-  rev: 67919ee01837761f2d954d7fbb08c12cdd38ec5a  # frozen: v1.4
+  rev: dfefe062799848234b4cd60b04aa633c0608025e  # frozen: v1.7.5
   hooks:
   - id: docformatter
 - repo: https://github.com/executablebooks/mdformat
-  rev: 0c0af8f5055b092cc0ffb90e20ae4a03af3a0e8a  # frozen: 0.7.11
+  rev: 08fba30538869a440b5059de90af03e3502e35fb  # frozen: 0.7.17
   hooks:
   - id: mdformat
     files: 'README.md'

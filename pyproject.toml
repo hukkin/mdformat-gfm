@@ -24,7 +24,7 @@ keywords = ["mdformat", "markdown", "formatter", "gfm"]
 "gfm" = "mdformat_gfm.plugin"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = ">=3.7"
 mdformat = ">=0.7.5,<0.8.0"
 markdown-it-py = { version = "*", extras = [ "linkify" ] }  # Let `mdformat` choose version boundaries for `markdown-it-py`
 mdit-py-plugins = ">=0.2.0"

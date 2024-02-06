@@ -58,11 +58,11 @@ Reduce tasklist whitespace
 - [x] reduce spaces
 .
 
-Autolink extension
+Autolink with a backslash
 .
-www.python.org/autolink\extension
+http://www.python.org/autolink\extension
 .
-www.python.org/autolink%5Cextension
+http://www.python.org/autolink%5Cextension
 .
 
 Autolink with percentage encoded space

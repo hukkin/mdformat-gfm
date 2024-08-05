@@ -1,6 +1,6 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: c4a0b883114b00d8d76b479c820ce7950211c99b  # frozen: v4.5.0
+  rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c  # frozen: v4.6.0
   hooks:
   - id: check-yaml
   - id: check-toml
@@ -14,11 +14,11 @@ repos:
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
-  rev: 6fdf8a4af28071ed1d079c01122b34c5d587207a  # frozen: 24.2.0
+  rev: b965c2a5026f8ba399283ba3e01898b012853c79  # frozen: 24.8.0
   hooks:
   - id: black
 - repo: https://github.com/PyCQA/flake8
-  rev: 7d37d9032d0d161634be4554273c30efd4dea0b3  # frozen: 7.0.0
+  rev: e43806be3607110919eff72939fda031776e885a  # frozen: 7.1.1
   hooks:
   - id: flake8
     additional_dependencies:

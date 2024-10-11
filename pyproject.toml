@@ -1,47 +1,54 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["flit_core>=3.2.0,<4"]
+build-backend = "flit_core.buildapi"
 
 
-[tool.poetry]
+[project]
 name = "mdformat-gfm"
 version = "0.3.6"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
-authors = ["Taneli Hukkinen <hukkinj1@users.noreply.github.com>"]
+authors = [
+    { name = "Taneli Hukkinen", email = "hukkin@users.noreply.github.com"},
+]
 description = "Mdformat plugin for GitHub Flavored Markdown compatibility"
-repository = "https://github.com/hukkinj1/mdformat-gfm"
 readme = "README.md"
-license = "MIT"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    'mdformat >=0.7.5,<0.8.0',
+    'markdown-it-py[linkify]',  # Let `mdformat` choose version boundaries for `markdown-it-py`
+    'mdit-py-plugins >=0.2.0',
+    'mdformat-tables >=0.4.0',
+]
 classifiers = [
     "Topic :: Documentation",
     "Topic :: Text Processing :: Markup",
 ]
 keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
-#[tool.poetry.urls]
-#"Changelog" = "https://github.com/hukkinj1/mdformat-gfm/blob/master/CHANGELOG.md"
+[project.urls]
+"Homepage" = "https://github.com/hukkin/mdformat-gfm"
 
-[tool.poetry.plugins."mdformat.parser_extension"]
+[project.entry-points."mdformat.parser_extension"]
 "gfm" = "mdformat_gfm.plugin"
 
-[tool.poetry.dependencies]
-python = ">=3.8"
-mdformat = ">=0.7.5,<0.8.0"
-markdown-it-py = { version = "*", extras = [ "linkify" ] }  # Let `mdformat` choose version boundaries for `markdown-it-py`
-mdit-py-plugins = ">=0.2.0"
-mdformat-tables = ">=0.4.0"
 
-[tool.poetry.dev-dependencies]
-# Tests
-pytest = "*"
-pytest-randomly = "*"
+[tool.tox]
+requires = ["tox>=4.21.1"]
+env_list = ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
-# Tools
-pre-commit = "*"
-mypy = "*"
-bump2version = "*"
+[tool.tox.env_run_base]
+description = "Run tests under {base_python}"
+deps = ["-r tests/requirements.txt"]
+commands = [["pytest", { replace = "posargs", extend = true }]]
 
-[tool.poetry.build]
-generate-setup-file = false
+[tool.tox.env."mypy"]
+base_python = ["python3.11"]
+description = "Run mypy under {base_python}"
+deps = [
+    "-r tests/requirements.txt",
+    "mypy ==1.11.2",
+]
+commands = [["mypy", { replace = "posargs", default = ["."], extend = true }]]
 
 
 [tool.isort]

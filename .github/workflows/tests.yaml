@@ -30,6 +30,7 @@ jobs:
 
     - name: Test with pytest
       run: |
+        pip install -r tests/requirements.txt
         pytest
 
     - name: Linters

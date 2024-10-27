@@ -78,3 +78,12 @@ test.com:443
 .
 test.com:443
 .
+
+Tasklist escape
+.
+- [x] foo
+- \[ ] bim 
+.
+- [x] foo
+- \[ \] bim
+.

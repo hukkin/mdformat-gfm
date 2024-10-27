@@ -41,6 +41,14 @@ description = "Run tests under {base_python}"
 deps = ["-r tests/requirements.txt"]
 commands = [["pytest", { replace = "posargs", extend = true }]]
 
+[tool.tox.env."git-mdformat"]
+description = "Run tests against unreleased mdformat from git"
+deps = [
+    "-r tests/requirements.txt",
+    "git+https://github.com/executablebooks/mdformat.git@master",
+    "git+https://github.com/executablebooks/mdformat-tables.git@master",
+]
+
 [tool.tox.env."mypy"]
 base_python = ["python3.11"]
 description = "Run mypy under {base_python}"

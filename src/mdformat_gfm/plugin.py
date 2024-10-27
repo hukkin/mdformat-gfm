@@ -134,9 +134,23 @@ def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str
     return text
 
 
+_RE_GFM_TICK_BOX = re.compile(r"^\[([ xX])]", flags=re.MULTILINE)
+
+
+def _escape_paragraph(text: str, node: RenderTreeNode, context: RenderContext) -> str:
+    # Escape tasklists
+    text = _RE_GFM_TICK_BOX.sub(r"\[" + r"\g<1>" + r"\]", text)
+
+    return text
+
+
 RENDERERS = {
     "s": _strikethrough_renderer,
     "list_item": _list_item_renderer,
     "link": _link_renderer,
 }
-POSTPROCESSORS = {"text": _escape_text, "inline": _postprocess_inline}
+POSTPROCESSORS = {
+    "text": _escape_text,
+    "inline": _postprocess_inline,
+    "paragraph": _escape_paragraph,
+}

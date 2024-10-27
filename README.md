@@ -25,7 +25,8 @@ making the tool able to format the following syntax extensions:
 ## Install
 
 ```sh
-pip install mdformat-gfm
+pipx install mdformat
+pipx inject mdformat mdformat-gfm
 ```
 
 ## Usage

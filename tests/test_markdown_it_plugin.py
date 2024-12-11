@@ -10,5 +10,5 @@ def test_gfm_autolink():
     html = mdit.render(text)
     assert (
         html
-        == '<p>GFM autolink <a href="http://www.commonmark.org">www.commonmark.org</a></p>\n'
+        == '<p>GFM autolink <a href="http://www.commonmark.org">www.commonmark.org</a></p>\n'  # noqa: E501
     )

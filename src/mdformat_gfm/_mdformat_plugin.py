@@ -5,14 +5,12 @@ import mdformat.plugins
 from mdformat.renderer import DEFAULT_RENDERERS, RenderContext, RenderTreeNode
 from mdit_py_plugins.tasklists import tasklists_plugin
 
-# A regex that matches a URL scheme and a following colon, as is valid in CommonMark
-RE_COMMONMARK_URL_SCHEME = re.compile("[A-Za-z][A-Za-z0-9+.-]{1,31}:")
+from mdformat_gfm._mdit_gfm_autolink_plugin import gfm_autolink_plugin
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
-    # Enable linkify-it-py (for GFM autolink extension)
-    mdit.options["linkify"] = True
-    mdit.enable("linkify")
+    # Enable GFM autolink extension
+    mdit.use(gfm_autolink_plugin)
 
     # Enable mdformat-tables plugin
     tables_plugin = mdformat.plugins.PARSER_EXTENSIONS["tables"]
@@ -111,20 +109,8 @@ def _postprocess_inline(text: str, node: RenderTreeNode, context: RenderContext)
     return text
 
 
-def _link_renderer(node: RenderTreeNode, context: RenderContext) -> str:
-    """Extend the default link renderer to handle linkify links."""
-    if node.markup == "linkify":
-        autolink_url = node.attrs["href"]
-        assert isinstance(autolink_url, str)
-        startswith_scheme = RE_COMMONMARK_URL_SCHEME.match(autolink_url)
-        if startswith_scheme and not node.children[0].content.startswith(
-            startswith_scheme.group()
-        ):
-            autolink_url = autolink_url.split(":", maxsplit=1)[1]
-            if autolink_url.startswith("//"):
-                autolink_url = autolink_url[2:]
-        return autolink_url
-    return _render_with_default_renderer(node, context)
+def _gfm_autolink_renderer(node: RenderTreeNode, context: RenderContext) -> str:
+    return node.meta["source_autolink"]
 
 
 def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str:
@@ -147,7 +133,7 @@ def _escape_paragraph(text: str, node: RenderTreeNode, context: RenderContext) -
 RENDERERS = {
     "s": _strikethrough_renderer,
     "list_item": _list_item_renderer,
-    "link": _link_renderer,
+    "gfm_autolink": _gfm_autolink_renderer,
 }
 POSTPROCESSORS = {
     "text": _escape_text,

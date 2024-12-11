@@ -62,7 +62,7 @@ Autolink with a backslash
 .
 http://www.python.org/autolink\extension
 .
-http://www.python.org/autolink%5Cextension
+http://www.python.org/autolink\extension
 .
 
 Autolink with percentage encoded space

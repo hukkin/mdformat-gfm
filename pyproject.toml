@@ -56,7 +56,7 @@ deps = [
     "-r tests/requirements.txt",
     "mypy ==1.11.2",
 ]
-commands = [["mypy", { replace = "posargs", default = ["."], extend = true }]]
+commands = [["mypy", { replace = "posargs", default = ["src/", "tests/"], extend = true }]]
 
 
 [tool.isort]

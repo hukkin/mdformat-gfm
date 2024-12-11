@@ -38,7 +38,7 @@ jobs:
       run: |
         pip install pre-commit mypy==1.11.2
         pre-commit run --all-files
-        mypy .
+        mypy src/ tests/
 
   pypi-publish:
     # Only publish if all other jobs succeed

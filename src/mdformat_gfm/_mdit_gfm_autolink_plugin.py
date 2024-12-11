@@ -205,6 +205,7 @@ def read_email(src: str, pos: int) -> tuple[int, str]:
     email = email_match.group() if email_match else None
     if not email or email[-1] in {"-", "_"}:
         raise NotFound
+    assert email_match is not None
     pos = email_match.end()
 
     # This isn't really part of the GFM spec, but an attempt to cover

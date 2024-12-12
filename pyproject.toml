@@ -15,7 +15,7 @@ license = { file = "LICENSE" }
 requires-python = ">=3.9"
 dependencies = [
     'mdformat >=0.7.5,<0.8.0',
-    'markdown-it-py[linkify]',  # Let `mdformat` choose version boundaries for `markdown-it-py`
+    'markdown-it-py',  # Let `mdformat` choose version boundaries for `markdown-it-py`
     'mdit-py-plugins >=0.2.0',
     'mdformat-tables >=0.4.0',
 ]
@@ -29,7 +29,7 @@ keywords = ["mdformat", "markdown", "formatter", "gfm"]
 "Homepage" = "https://github.com/hukkin/mdformat-gfm"
 
 [project.entry-points."mdformat.parser_extension"]
-"gfm" = "mdformat_gfm.plugin"
+"gfm" = "mdformat_gfm._mdformat_plugin"
 
 
 [tool.tox]
@@ -56,7 +56,7 @@ deps = [
     "-r tests/requirements.txt",
     "mypy ==1.11.2",
 ]
-commands = [["mypy", { replace = "posargs", default = ["."], extend = true }]]
+commands = [["mypy", { replace = "posargs", default = ["src/", "tests/"], extend = true }]]
 
 
 [tool.isort]

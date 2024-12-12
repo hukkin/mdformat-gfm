@@ -3,15 +3,18 @@ import re
 from markdown_it import MarkdownIt
 from markdown_it.rules_inline import StateInline
 
+from mdformat_gfm._text_inline_rule import text_rule
+
 
 def gfm_autolink_plugin(md: MarkdownIt) -> None:
     """Markdown-it plugin to parse GFM autolinks."""
     md.inline.ruler.before("linkify", "gfm_autolink", gfm_autolink)
-    # "text" inline rule will skip "www." prefixed links, so needs to be
-    # disabled. This is probably disastrous for performance. An alternative, I think,
-    # would be to override the "text" inline rule with one that stops at a "."
-    # prefixed by "www".
-    md.inline.ruler.disable("text")
+
+    # The default "text" inline rule will skip starting characters of GFM
+    # autolinks. It can be disabled, but that is disastrous for performance.
+    # Instead, we replace it with a custom "text" inline rule that yields at
+    # locations that can potentially be the beginning of a GFM autolink.
+    md.inline.ruler.at("text", text_rule)
 
 
 # A string that matches this must still be invalidated if it ends with "_" or "-"

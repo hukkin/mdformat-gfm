@@ -110,7 +110,7 @@ def _postprocess_inline(text: str, node: RenderTreeNode, context: RenderContext)
 
 
 def _gfm_autolink_renderer(node: RenderTreeNode, context: RenderContext) -> str:
-    return node.meta["source_autolink"]
+    return node.meta["source_text"]
 
 
 def _escape_text(text: str, node: RenderTreeNode, context: RenderContext) -> str:

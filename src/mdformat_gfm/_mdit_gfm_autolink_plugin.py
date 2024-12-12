@@ -130,7 +130,7 @@ def push_tokens(
         return
     token = state.push("gfm_autolink_open", "a", 1)
     token.attrs = {"href": full_url}
-    token.meta = {"source_autolink": source_url}
+    token.meta = {"source_text": source_url}
 
     token = state.push("text", "", 0)
     token.content = state.md.normalizeLinkText(source_url)

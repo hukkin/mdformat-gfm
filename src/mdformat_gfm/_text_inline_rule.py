@@ -13,7 +13,7 @@ import re
 from markdown_it.rules_inline import StateInline
 
 GFM_WHITESPACE = frozenset(" \t\n\v\f\r")
-BEFORE_VALID_AUTOLINK_CHARS = GFM_WHITESPACE | {"*", "_", "~", "("}
+BEFORE_AUTOLINK_CHARS = GFM_WHITESPACE | {"*", "_", "~", "("}
 
 # The default set of terminator characters
 _TerminatorChars = {
@@ -46,9 +46,7 @@ _default_terminator = "[" + re.escape("".join(_TerminatorChars)) + "]"
 _gfm_autolink_terminator = (
     r"(?:" r"www\." "|" "http" "|" "mailto:" "|" "xmpp:" "|" r"[a-zA-Z0-9._+-]+@" r")"
 )
-_before_autolink_terminator = (
-    "[" + re.escape("".join(BEFORE_VALID_AUTOLINK_CHARS)) + "]"
-)
+_before_autolink = "[" + re.escape("".join(BEFORE_AUTOLINK_CHARS)) + "]"
 
 _RE_TERMINATOR_FIRST_CHAR = re.compile(
     _default_terminator + "|" + _gfm_autolink_terminator
@@ -57,7 +55,7 @@ _RE_TERMINATOR_NON_FIRST_CHAR = re.compile(
     r"(?s:.)"  # match any character (also newline)
     + _default_terminator
     + "|"
-    + _before_autolink_terminator
+    + _before_autolink
     + _gfm_autolink_terminator
 )
 

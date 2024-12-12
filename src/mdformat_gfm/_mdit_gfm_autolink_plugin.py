@@ -3,6 +3,7 @@ import re
 from markdown_it import MarkdownIt
 from markdown_it.rules_inline import StateInline
 
+from mdformat_gfm import _gfm
 from mdformat_gfm._text_inline_rule import text_rule
 
 
@@ -23,11 +24,6 @@ RE_GFM_EMAIL = re.compile(r"[a-zA-Z0-9._+-]+@[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)+
 RE_GFM_AUTOLINK_DOMAIN = re.compile(r"[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)+")
 
 RE_ENDS_IN_ENTITY_REF = re.compile(r"&[a-zA-Z0-9]+;\Z")
-
-# Whitespace characters, as specified in
-# https://github.github.com/gfm/#whitespace-character
-# (spec version 0.29-gfm (2019-04-06)
-GFM_WHITESPACE = frozenset(" \t\n\v\f\r")
 
 ASCII_ALPHANUMERICS = frozenset(
     "abcdefghijklmnopqrstuvwxyz" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789"
@@ -53,7 +49,7 @@ def gfm_autolink(state: StateInline, silent: bool) -> bool:  # noqa: C901
     # or any of the delimiting characters *, _, ~, and (.
     if pos:
         preceding_char = src[pos - 1]
-        if preceding_char not in GFM_WHITESPACE | {"*", "_", "~", "("}:
+        if preceding_char not in _gfm.BEFORE_AUTOLINK_CHARS:
             return False
 
     if src.startswith("www.", pos):
@@ -190,7 +186,7 @@ def read_domain_and_resource(src: str, pos: int) -> tuple[int, str, str]:
         raise NotFound
 
     resource_start_pos = pos
-    while pos < len(src) and src[pos] not in GFM_WHITESPACE | {"<"}:
+    while pos < len(src) and src[pos] not in _gfm.WHITESPACE | {"<"}:
         pos += 1
     resource = src[resource_start_pos:pos]
 

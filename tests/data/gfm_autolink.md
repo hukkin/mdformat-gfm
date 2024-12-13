@@ -29,6 +29,37 @@ don't touch text in html <a> tags
 <p><a href="https://example.com">https://example.com</a></p>
 .
 
+
+space separated autolink in html <a> tags
+.
+<a href="https://example.fi"> https://example.com </a>
+.
+<p><a href="https://example.fi"> <a href="https://example.com">https://example.com</a> </a></p>
+.
+
+space separated autolink after html </a> tag
+.
+</a> https://example.com
+.
+<p></a> <a href="https://example.com">https://example.com</a></p>
+.
+
+autolink in link after </a> tag
+.
+</a> [t https://example.fi](https://example.com)
+.
+<p></a> <a href="https://example.com">t https://example.fi</a></p>
+.
+
+
+autolink in link after <a> tag
+.
+<a> [t https://example.fi](https://example.com)
+.
+<p><a> <a href="https://example.com">t https://example.fi</a></p>
+.
+
+
 entities inside raw links
 .
 https://example.com/foo&amp;bar
@@ -261,4 +292,24 @@ emphasis inside raw links (asterisk) at end of line
 This doesnt http://example.org/foo.*bar*-*baz
 .
 <p>This doesnt <a href="http://example.org/foo.*bar*-*baz">http://example.org/foo.*bar*-*baz</a></p>
+.
+
+autolink inside link
+.
+[t https://blaa.org](https://www.gaah.fi)
+
+[https://blaa.org](https://www.gaah.fi)
+.
+<p><a href="https://www.gaah.fi">t https://blaa.org</a></p>
+<p><a href="https://www.gaah.fi">https://blaa.org</a></p>
+.
+
+autolink inside image
+.
+![t https://blaa.org](https://www.gaah.fi)
+
+![https://blaa.org](https://www.gaah.fi)
+.
+<p><img src="https://www.gaah.fi" alt="t https://blaa.org" /></p>
+<p><img src="https://www.gaah.fi" alt="https://blaa.org" /></p>
 .

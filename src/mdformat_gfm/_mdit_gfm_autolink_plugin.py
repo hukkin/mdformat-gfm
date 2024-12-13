@@ -42,6 +42,10 @@ def gfm_autolink(state: StateInline, silent: bool) -> bool:  # noqa: C901
     Returns:
         bool: True if GFM autolink found.
     """
+    # Prevents autolink parsing in link and image labels
+    if state.level > 0:
+        return False
+
     pos = state.pos
     src = state.src
 

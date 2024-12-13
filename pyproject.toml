@@ -27,6 +27,7 @@ keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
 [project.urls]
 "Homepage" = "https://github.com/hukkin/mdformat-gfm"
+"Changelog" = "https://github.com/hukkin/mdformat-gfm/blob/master/CHANGELOG.md"
 
 [project.entry-points."mdformat.parser_extension"]
 "gfm" = "mdformat_gfm._mdformat_plugin"

@@ -94,4 +94,5 @@ implicit_reexport = false
 no_implicit_optional = true
 overrides = [
     { module = "tests.*", disallow_untyped_defs = false },
+    { module = "wcwidth.*", ignore_missing_imports = true },
 ]

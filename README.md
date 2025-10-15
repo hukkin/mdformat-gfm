@@ -45,11 +45,13 @@ Mdformat-gfm adds a `--compact-tables` CLI option and a corresponding `compact_t
 Turning this on will strip extra spaces from GFM tables that are otherwise used to align table columns.
 
 To use the option on the command line, do
+
 ```sh
 mdformat --compact-tables <filename>
 ```
 
 Alternatively add the following in a `.mdformat.toml` configuration file
+
 ```toml
 [plugin.tables]
 compact_tables = true

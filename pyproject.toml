@@ -17,7 +17,7 @@ dependencies = [
     'mdformat >=0.7.5,<0.8.0',
     'markdown-it-py',  # Let `mdformat` choose version boundaries for `markdown-it-py`
     'mdit-py-plugins >=0.2.0',
-    'mdformat-tables >=0.4.0',
+    'wcwidth >=0.2.13',
 ]
 classifiers = [
     "Topic :: Documentation",
@@ -31,6 +31,7 @@ keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
 [project.entry-points."mdformat.parser_extension"]
 "gfm" = "mdformat_gfm._mdformat_plugin"
+"tables" = "mdformat_gfm._tables_plugin"
 
 
 [tool.tox]

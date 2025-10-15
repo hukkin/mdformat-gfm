@@ -34,3 +34,23 @@ pipx inject mdformat mdformat-gfm
 ```sh
 mdformat <filename>
 ```
+
+## Configuration
+
+Mdformat-gfm distribution includes two plugins identified as `gfm` and `tables`.
+The `gfm` plugin adds support for all GFM syntax (including tables).
+Enabling `tables` only adds tables support.
+
+Mdformat-gfm adds a `--compact-tables` CLI option and a corresponding `compact_tables` TOML boolean.
+Turning this on will strip extra spaces from GFM tables that are otherwise used to align table columns.
+
+To use the option on the command line, do
+```sh
+mdformat --compact-tables <filename>
+```
+
+Alternatively add the following in a `.mdformat.toml` configuration file
+```toml
+[plugin.tables]
+compact_tables = true
+```

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["flit_core>=3.2.0,<4"]
+requires = ["flit_core>=3.12,<4"]
 build-backend = "flit_core.buildapi"
 
 
@@ -11,7 +11,8 @@ authors = [
 ]
 description = "Mdformat plugin for GitHub Flavored Markdown compatibility"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = [
     'mdformat >=0.7.5,<0.8.0',

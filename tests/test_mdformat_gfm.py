@@ -38,9 +38,9 @@ def test_default_style__api(line, title, text, expected):
 def test_default_style__cli(line, title, text, expected, tmp_path):
     """Test fixtures in tests/data/default_style.md."""
     file_path = tmp_path / "test_markdown.md"
-    file_path.write_text(text)
+    file_path.write_text(text, encoding="utf-8")
     assert mdformat._cli.run([str(file_path)]) == 0
-    md_new = file_path.read_text()
+    md_new = file_path.read_text(encoding="utf-8")
     if md_new != expected:
         print("Formatted (unexpected) Markdown below:")
         print(md_new)
@@ -55,9 +55,9 @@ def test_default_style__cli(line, title, text, expected, tmp_path):
 def test_wrap_width_50__cli(line, title, text, expected, tmp_path):
     """Test fixtures in tests/data/wrap_width_50.md."""
     file_path = tmp_path / "test_markdown.md"
-    file_path.write_text(text)
+    file_path.write_text(text, encoding="utf-8")
     assert mdformat._cli.run([str(file_path), "--wrap=50"]) == 0
-    md_new = file_path.read_text()
+    md_new = file_path.read_text(encoding="utf-8")
     if md_new != expected:
         print("Formatted (unexpected) Markdown below:")
         print(md_new)
@@ -72,9 +72,9 @@ def test_wrap_width_50__cli(line, title, text, expected, tmp_path):
 def test_compact_tables__cli(line, title, text, expected, tmp_path):
     """Test fixtures in tests/data/compact_tables.md."""
     file_path = tmp_path / "test_markdown.md"
-    file_path.write_text(text)
+    file_path.write_text(text, encoding="utf-8")
     assert mdformat._cli.run([str(file_path), "--compact-tables"]) == 0
-    md_new = file_path.read_text()
+    md_new = file_path.read_text(encoding="utf-8")
     if md_new != expected:
         print("Formatted (unexpected) Markdown below:")
         print(md_new)

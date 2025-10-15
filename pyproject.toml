@@ -12,7 +12,7 @@ authors = [
 description = "Mdformat plugin for GitHub Flavored Markdown compatibility"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     'mdformat >=0.7.5,<0.8.0',
     'markdown-it-py',  # Let `mdformat` choose version boundaries for `markdown-it-py`
@@ -36,7 +36,7 @@ keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
 [tool.tox]
 requires = ["tox>=4.21.1"]
-env_list = ["3.9", "3.10", "3.11", "3.12", "3.13"]
+env_list = ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
 [tool.tox.env_run_base]
 description = "Run tests under {base_python}"

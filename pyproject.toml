@@ -15,7 +15,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = [
-    'mdformat >=0.7.5,<0.8.0',
+    'mdformat >=0.7.5',
     'markdown-it-py',  # Let `mdformat` choose version boundaries for `markdown-it-py`
     'mdit-py-plugins >=0.2.0',
     'wcwidth >=0.2.13',

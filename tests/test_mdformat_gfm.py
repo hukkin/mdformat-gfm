@@ -14,6 +14,9 @@ WRAP_WIDTH_50_CASES = read_fixture_file(
 COMPACT_TABLES_CASES = read_fixture_file(
     Path(__file__).parent / "data" / "compact_tables.md"
 )
+COLUMN_WIDTHS_CASES = read_fixture_file(
+    Path(__file__).parent / "data" / "column_widths.md"
+)
 
 
 @pytest.mark.parametrize(
@@ -101,3 +104,71 @@ def test_compact_tables__toml(tmp_path):
     assert mdformat._cli.run([str(file_path)]) == 0
     md_new = file_path.read_text(encoding="utf-8")
     assert md_new == compact_table
+
+
+@pytest.mark.parametrize(
+    "line,title,text,expected",
+    COLUMN_WIDTHS_CASES,
+    ids=[f[1] for f in COLUMN_WIDTHS_CASES],
+)
+def test_column_widths__cli(line, title, text, expected, tmp_path):
+    file_path = tmp_path / "test_markdown.md"
+    file_path.write_text(text, encoding="utf-8")
+    assert mdformat._cli.run([str(file_path), "--column-widths"]) == 0
+    md_new = file_path.read_text(encoding="utf-8")
+    assert md_new == expected
+
+
+@pytest.mark.parametrize(
+    "line,title,text,expected",
+    COLUMN_WIDTHS_CASES,
+    ids=[f[1] for f in COLUMN_WIDTHS_CASES],
+)
+def test_column_widths__api(line, title, text, expected):
+    md_new = mdformat.text(text, extensions={"gfm"}, options={"col_widths": True})
+    assert md_new == expected
+
+
+@pytest.mark.parametrize(
+    "args,config",
+    [
+        ([], "col_widths = true"),
+        (["--column-widths"], "col_widths = false"),
+    ],
+)
+def test_column_widths__toml(args, config, tmp_path):
+    text = """\
+| a | b |
+| --- | ----- |
+| x | value |
+"""
+    expected = """\
+| a   | b     |
+| --- | ----- |
+| x   | value |
+"""
+    conf_path = tmp_path / ".mdformat.toml"
+    conf_path.write_text(f"[plugin.tables]\n{config}\n", encoding="utf-8")
+    file_path = tmp_path / "test_markdown.md"
+    file_path.write_text(text, encoding="utf-8")
+    assert mdformat._cli.run([str(file_path), *args]) == 0
+    md_new = file_path.read_text(encoding="utf-8")
+    assert md_new == expected
+
+
+def test_column_widths__compact(tmp_path):
+    text = """\
+| a | b |
+| ---- | ------ |
+| x | value |
+"""
+    expected = """\
+| a | b |
+| -- | -- |
+| x | value |
+"""
+    file_path = tmp_path / "test_markdown.md"
+    file_path.write_text(text, encoding="utf-8")
+    assert mdformat._cli.run([str(file_path), "--column-widths", "--compact-tables"]) == 0
+    md_new = file_path.read_text(encoding="utf-8")
+    assert md_new == expected

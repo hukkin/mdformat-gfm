@@ -5,6 +5,8 @@ import argparse
 from collections.abc import Iterable, Mapping, Sequence
 
 from markdown_it import MarkdownIt
+from markdown_it.rules_block import StateBlock
+from markdown_it.rules_block.table import getLine, table
 from mdformat.renderer import RenderContext, RenderTreeNode
 from mdformat.renderer.typing import Postprocess, Render
 from wcwidth import wcswidth
@@ -19,11 +21,30 @@ def add_cli_argument_group(group: argparse._ArgumentGroup) -> None:
         const=True,
         help="do not add padding to table cells",
     )
+    group.add_argument(
+        "--column-widths",
+        dest="col_widths",
+        action="store_const",
+        const=True,
+        help="do not modify column widths for tables",
+    )
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
     """Update the parser, e.g. by adding a plugin: `mdit.use(myplugin)`"""
     mdit.enable("table")
+    mdit.block.ruler.at(
+        "table", _parse_table, {"alt": ["paragraph", "reference"]}
+    )
+
+
+def _parse_table(state: StateBlock, start: int, end: int, silent: bool) -> bool:
+    token_index = len(state.tokens)
+    matched = table(state, start, end, silent)
+    if matched and not silent:
+        cells = getLine(state, start + 1).strip().strip("|").split("|")
+        state.tokens[token_index].meta["separator_cells"] = [cell.strip() for cell in cells]
+    return matched
 
 
 def _lpad(text: str, width: int) -> str:
@@ -83,6 +104,14 @@ def _render_table(node: RenderTreeNode, context: RenderContext) -> str:
     )
     compact_tables_from_api = context.options["mdformat"].get("compact_tables")
     compact_tables = compact_tables_from_cli_or_toml or compact_tables_from_api
+    col_widths_from_cli_or_toml = (
+        context.options["mdformat"]
+        .get("plugin", {})
+        .get("tables", {})
+        .get("col_widths")
+    )
+    col_widths_from_api = context.options["mdformat"].get("col_widths")
+    col_widths = col_widths_from_cli_or_toml or col_widths_from_api
     # gather rendered cell content into row * column array
     rows: list[list[str]] = []
     align: list[list[str]] = []
@@ -114,6 +143,8 @@ def _render_table(node: RenderTreeNode, context: RenderContext) -> str:
     # write content
     # note: assuming always one header row
     lines = _to_string(rows, align, widths)
+    if not compact_tables and col_widths:
+        lines[1] = "| " + " | ".join(node.meta["separator_cells"]) + " |"
 
     return "\n".join(lines)
 

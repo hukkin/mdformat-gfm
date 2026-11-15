@@ -41,18 +41,23 @@ Mdformat-gfm distribution includes two plugins identified as `gfm` and `tables`.
 The `gfm` plugin adds support for all GFM syntax (including tables).
 Enabling `tables` only adds tables support.
 
-Mdformat-gfm adds a `--compact-tables` CLI option and a corresponding `compact_tables` TOML boolean.
-Turning this on will strip extra spaces from GFM tables that are otherwise used to align table columns.
+By default, table columns are padded to align cells. Use `--compact-tables` to
+remove padding, or `--column-widths` to retain separator markers while
+formatting table contents (useful for maintaining column width since pandoc
+formats tables in its output based on column widths).
 
-To use the option on the command line, do
+Separator spacing is normalized without changing dashes or alignment markers.
 
 ```sh
 mdformat --compact-tables <filename>
 ```
 
-Alternatively add the following in a `.mdformat.toml` configuration file
+Alternatively, configure either option in `.mdformat.toml`:
 
 ```toml
 [plugin.tables]
 compact_tables = true
+# Or: col_widths = true
 ```
+
+`--compact-tables` takes precedence over `--column-widths`.
